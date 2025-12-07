@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <met name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Website oficial pentru Clasa 5 A">
+        <title>Clasa 5 A - Pagina Principală</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+            rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-pattern"></div>
+
+    <!-- Admin Control Panel (Hidden by default) -->
+    <div id="adminPanel" class="admin-control-panel" style="display: none;">
+        <div class="admin-panel-header">
+            <h3>🔐 Panou Administrator</h3>
+            <button id="closeAdminPanel" class="close-admin-btn">×</button>
+        </div>
+        <div class="admin-panel-content">
+            <button id="makeAnnouncementBtn" class="admin-action-btn">
+                📢 Crează Anunț
+            </button>
+            <button id="logoutAdminBtn" class="admin-action-btn logout-btn">
+                🚪 Deconectare
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Button (Shows when logged in) -->
+    <button id="openAdminPanel" class="floating-admin-btn" style="display: none;">
+        🔐 Admin
+    </button>
+
+    <!-- Announcement Modal -->
+    <div id="announcementModal" class="modal">
+        <div class="modal-content announcement-modal-content">
+            <h2 class="modal-title">Creează un Anunț Nou</h2>
+            <form id="announcementForm">
+                <div class="form-group">
+                    <label for="announcementTitle" class="form-label">Titlu Anunț</label>
+                    <input type="text" id="announcementTitle" class="form-input" placeholder="Ex: Excursie școlară"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementCategory" class="form-label">Categorie</label>
+                    <select id="announcementCategory" class="form-input">
+                        <option value="Informare">Informare</option>
+                        <option value="Test">Test</option>
+                        <option value="Eveniment">Eveniment</option>
+                        <option value="Sărbătoare">Sărbătoare</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="announcementDate" class="form-label">Dată</label>
+                    <input type="date" id="announcementDate" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="announcementDescription" class="form-label">Descriere</label>
+                    <textarea id="announcementDescription" class="form-textarea" rows="4"
+                        placeholder="Scrie descrierea anunțului..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelAnnouncement" class="modal-button cancel-btn">Anulează</button>
+                    <button type="submit" class="modal-button submit-btn">Publică Anunț</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="header-content">
+            <h1 class="logo">
+                <span class="logo-icon">📚</span>
+                Clasa 5 A
+            </h1>
+            <nav class="main-nav">
+                <a href="#despre" class="nav-link">Despre Noi</a>
+                <a href="#discipline" class="nav-link">Discipline</a>
+                <a href="#orar" class="nav-link">Orar</a>
+                <a href="#activitati" class="nav-link">Activități</a>
+                <a href="#galerie" class="nav-link">Galerie</a>
+                <a href="admin.html" class="nav-link admin-link">
+                    <span class="admin-icon">🔐</span>
+                    Administrator
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2 class="hero-title">Bine ați venit la Clasa 5 A!</h2>
+                <p class="hero-subtitle">Împreună învățăm, creștem și ne distrăm</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">Elevi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Discipline</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Entuziasm</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="despre" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Despre Clasa Noastră</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="content-grid">
+                <div class="info-card">
+                    <div class="card-icon">🎓</div>
+                    <h3 class="card-title">Învățare Excelentă</h3>
+                    <p class="card-description">Ne dedicăm succesului academic și dezvoltării personale a fiecărui elev.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🤝</div>
+                    <h3 class="card-title">Spiritul de Echipă</h3>
+                    <p class="card-description">Colaborăm și ne susținem reciproc în toate activitățile noastre.</p>
+                </div>
+                <div class="info-card">
+                    <div class="card-icon">🌟</div>
+                    <h3 class="card-title">Creativitate</h3>
+                    <p class="card-description">Încurajăm gândirea creativă și inovația în toate proiectele noastre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="discipline" class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Disciplinele Noastre</h2>
+                <div class="section-underline"></div>
+                <p class="section-description">Studiem 17 discipline diverse pentru o educație completă</p>
+            </div>
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <div class="subject-icon">🌍</div>
+                    <h3 class="subject-name">Geografie</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">⚖️</div>
+                    <h3 class="subject-name">EPSC</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">📖</div>
+                    <h3 class="subject-name">Română</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🔢</div>
+                    <h3 class="subject-name">Matematică</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">👥</div>
+                    <h3 class="subject-name">Ed. Socială</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🏛️</div>
+                    <h3 class="subject-name">Istorie</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🇫🇷</div>
+                    <h3 class="subject-name">Franceză</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🔧</div>
+                    <h3 class="subject-name">Tehnologie</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🎨</div>
+                    <h3 class="subject-name">Desen</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🇬🇧</div>
+                    <h3 class="subject-name">Engleză</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🎵</div>
+                    <h3 class="subject-name">Muzică</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">💻</div>
+                    <h3 class="subject-name">Informatică</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">⚽</div>
+                    <h3 class="subject-name">Ed. Fizică</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">🧬</div>
+                    <h3 class="subject-name">Biologie</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">✝️</div>
+                    <h3 class="subject-name">Religie</h3>
+                </div>
+                <div class="subject-card">
+                    <div class="subject-icon">👨‍🏫</div>
+                    <h3 class="subject-name">Dirigenție</h3>
+                </div>
+                <div class="subject-card subject-card-optional">
+                    <div class="subject-icon">🌟</div>
+                    <h3 class="subject-name">Engleză Opțională</h3>
+                    <span class="optional-badge">Opțional</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="orar" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Orarul Nostru</h2>
+                <div class="section-underline"></div>
+                <p class="section-description">Programul săptămânal al clasei 5 A</p>
+            </div>
+            <div class="schedule-container">
+                <div class="day-schedule">
+                    <div class="day-header">
+                        <h3 class="day-name">Luni</h3>
+                        <span class="day-icon">📅</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li class="subject-item"><span class="hour">1</span> Geografie</li>
+                        <li class="subject-item"><span class="hour">2</span> EPSC</li>
+                        <li class="subject-item"><span class="hour">3</span> Română</li>
+                        <li class="subject-item"><span class="hour">4</span> Matematică</li>
+                        <li class="subject-item"><span class="hour">5</span> Ed. Socială</li>
+                    </ul>
+                </div>
+
+                <div class="day-schedule">
+                    <div class="day-header">
+                        <h3 class="day-name">Marți</h3>
+                        <span class="day-icon">📅</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li class="subject-item"><span class="hour">1</span> Istorie</li>
+                        <li class="subject-item"><span class="hour">2</span> Franceză</li>
+                        <li class="subject-item"><span class="hour">3</span> Tehnologie</li>
+                        <li class="subject-item"><span class="hour">4</span> Română</li>
+                        <li class="subject-item"><span class="hour">5</span> Matematică</li>
+                    </ul>
+                </div>
+
+                <div class="day-schedule">
+                    <div class="day-header">
+                        <h3 class="day-name">Miercuri</h3>
+                        <span class="day-icon">📅</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li class="subject-item"><span class="hour">1</span> Română</li>
+                        <li class="subject-item"><span class="hour">2</span> Matematică</li>
+                        <li class="subject-item"><span class="hour">3</span> Desen</li>
+                        <li class="subject-item"><span class="hour">4</span> Engleză</li>
+                        <li class="subject-item"><span class="hour">5</span> Muzică</li>
+                        <li class="subject-item"><span class="hour">6</span> Informatică</li>
+                    </ul>
+                </div>
+
+                <div class="day-schedule">
+                    <div class="day-header">
+                        <h3 class="day-name">Joi</h3>
+                        <span class="day-icon">📅</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li class="subject-item"><span class="hour">1</span> Engleză</li>
+                        <li class="subject-item"><span class="hour">2</span> Ed. Fizică</li>
+                        <li class="subject-item"><span class="hour">3</span> Biologie</li>
+                        <li class="subject-item"><span class="hour">4</span> Religie</li>
+                        <li class="subject-item"><span class="hour">5</span> Dirigenție</li>
+                    </ul>
+                </div>
+
+                <div class="day-schedule">
+                    <div class="day-header">
+                        <h3 class="day-name">Vineri</h3>
+                        <span class="day-icon">📅</span>
+                    </div>
+                    <ul class="subject-list">
+                        <li class="subject-item"><span class="hour">1</span> Română</li>
+                        <li class="subject-item"><span class="hour">2</span> Matematică</li>
+                        <li class="subject-item"><span class="hour">3</span> Franceză</li>
+                        <li class="subject-item"><span class="hour">4</span> Ed. Fizică</li>
+                        <li class="subject-item"><span class="hour">5</span> Engleză Opțională</li>
+                        <li class="subject-item"><span class="hour">6</span> Istorie</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="activitati" class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Activități Recente</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="activities-grid">
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <span class="activity-date">10 Decembrie 2025</span>
+                        <span class="activity-tag">Istorie</span>
+                    </div>
+                    <h3 class="activity-title">Test la Istorie</h3>
+                    <p class="activity-description">Pregătiți-vă pentru testul la istorie! Studiați despre Evul Mediu și
+                        Renaștere.</p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <span class="activity-date">1 Decembrie 2025</span>
+                        <span class="activity-tag">Sărbătoare</span>
+                    </div>
+                    <h3 class="activity-title">Ziua Națională</h3>
+                    <p class="activity-description">Sărbătorirea Zilei Naționale a României cu program artistic special.
+                    </p>
+                </div>
+                <div class="activity-card">
+                    <div class="activity-header">
+                        <span class="activity-date">12 Decembrie 2025</span>
+                        <span class="activity-tag">Matematică</span>
+                    </div>
+                    <h3 class="activity-title">Test la Matematică</h3>
+                    <p class="activity-description">Test important la matematică - capitolul despre fracții și ecuații!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="galerie" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Galerie Foto</h2>
+                <div class="section-underline"></div>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="placeholder-icon">📸</span>
+                        <p>Fotografie 1</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="placeholder-icon">📸</span>
+                        <p>Fotografie 2</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="placeholder-icon">📸</span>
+                        <p>Fotografie 3</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="placeholder-icon">📸</span>
+                        <p>Fotografie 4</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Clasa 5 A. Toate drepturile rezervate.</p>
+            <p class="footer-subtitle">Construim viitorul împreună! 🚀</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
