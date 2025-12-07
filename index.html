@@ -3,15 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <met name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Website oficial pentru Clasa 5 A">
-        <title>Clasa 5 A - Pagina Principală</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
-            rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Website oficial pentru Clasa 5 A">
+    <title>Clasa 5 A - Pagina Principală</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 
 <body>
@@ -25,7 +29,10 @@
         </div>
         <div class="admin-panel-content">
             <button id="makeAnnouncementBtn" class="admin-action-btn">
-                📢 Crează Anunț
+                📢 Creează Anunț
+            </button>
+            <button id="addLessonBtn" class="admin-action-btn">
+                📚 Add Lesson
             </button>
             <button id="logoutAdminBtn" class="admin-action-btn logout-btn">
                 🚪 Deconectare
@@ -74,6 +81,95 @@
         </div>
     </div>
 
+    <!-- AI Tutor Modal -->
+    <div id="tutorModal" class="modal">
+        <div class="modal-content tutor-modal-content">
+            <div class="tutor-header">
+                <h2 class="modal-title">🤖 AI Tutor - Homework Helper</h2>
+                <button id="closeTutorBtn" class="close-tutor-btn">×</button>
+            </div>
+
+            <div id="subjectSelection" class="subject-selection">
+                <p class="tutor-subtitle">Choose your subject:</p>
+                <div class="subject-buttons">
+                    <button class="subject-btn" data-subject="Mathematics">🔢 Mathematics</button>
+                    <button class="subject-btn" data-subject="Romanian">📖 Romanian</button>
+                    <button class="subject-btn" data-subject="English">🇬🇧 English</button>
+                    <button class="subject-btn" data-subject="French">🇫🇷 French</button>
+                    <button class="subject-btn" data-subject="History">🏛️ History</button>
+                    <button class="subject-btn" data-subject="Geography">🌍 Geography</button>
+                    <button class="subject-btn" data-subject="Biology">🧬 Biology</button>
+                    <button class="subject-btn" data-subject="Science">⚗️ Science</button>
+                </div>
+            </div>
+
+            <div id="tutorChat" class="tutor-chat" style="display: none;">
+                <div class="current-subject">
+                    <span>Subject: <strong id="currentSubject"></strong></span>
+                    <button id="changeSubjectBtn" class="change-subject-btn">Change Subject</button>
+                </div>
+                <div id="chatMessages" class="chat-messages"></div>
+                <div class="chat-input-area">
+                    <textarea id="questionInput" class="question-input"
+                        placeholder="Ask me anything about this subject... (e.g., 'How do I solve 2x + 5 = 15?')"
+                        rows="3"></textarea>
+                    <button id="sendQuestionBtn" class="send-question-btn">
+                        <span>Send</span> ✈️
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Lesson Modal (Admin Only) -->
+    <div id="addLessonModal" class="modal">
+        <div class="modal-content announcement-modal-content">
+            <h2 class="modal-title">➕ Add New Lesson</h2>
+            <form id="addLessonForm">
+                <div class="form-group">
+                    <label for="lessonTitle" class="form-label">Lesson Title</label>
+                    <input type="text" id="lessonTitle" class="form-input" placeholder="e.g., 'Photosynthesis'"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="lessonSubject" class="form-label">Subject</label>
+                    <select id="lessonSubject" class="form-input">
+                        <option value="Geografie">Geografie</option>
+                        <option value="EPSC">EPSC</option>
+                        <option value="Română">Română</option>
+                        <option value="Matematică">Matematică</option>
+                        <option value="Ed. Socială">Ed. Socială</option>
+                        <option value="Istorie">Istorie</option>
+                        <option value="Franceză">Franceză</option>
+                        <option value="Tehnologie">Tehnologie</option>
+                        <option value="Desen">Desen</option>
+                        <option value="Engleză">Engleză</option>
+                        <option value="Muzică">Muzică</option>
+                        <option value="Informatică">Informatică</option>
+                        <option value="Ed. Fizică">Ed. Fizică</option>
+                        <option value="Biologie">Biologie</option>
+                        <option value="Religie">Religie</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="lessonImageUrl" class="form-label">Image URL</label>
+                    <input type="url" id="lessonImageUrl" class="form-input" placeholder="https://example.com/image.jpg"
+                        required>
+                    <small class="form-hint">Paste the URL of the lesson image or diagram</small>
+                </div>
+                <div class="form-group">
+                    <label for="lessonDescription" class="form-label">Description (Optional)</label>
+                    <textarea id="lessonDescription" class="form-textarea" rows="3"
+                        placeholder="Brief description of the lesson..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="cancelLesson" class="modal-button cancel-btn">Cancel</button>
+                    <button type="submit" class="modal-button submit-btn">Add Lesson</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <header class="main-header">
         <div class="header-content">
             <h1 class="logo">
@@ -84,8 +180,12 @@
                 <a href="#despre" class="nav-link">Despre Noi</a>
                 <a href="#discipline" class="nav-link">Discipline</a>
                 <a href="#orar" class="nav-link">Orar</a>
+                <a href="#lectii" class="nav-link">Lecții</a>
                 <a href="#activitati" class="nav-link">Activități</a>
                 <a href="#galerie" class="nav-link">Galerie</a>
+                <button id="openTutorBtn" class="nav-link tutor-btn">
+                    🤖 Tutor
+                </button>
                 <a href="admin.html" class="nav-link admin-link">
                     <span class="admin-icon">🔐</span>
                     Administrator
@@ -301,7 +401,22 @@
             </div>
         </section>
 
-        <section id="activitati" class="section section-alt">
+        <section id="lectii" class="section section-alt">
+            <div class="section-header">
+                <h2 class="section-title">Lecții</h2>
+                <div class="section-underline"></div>
+                <p class="section-description">Materiale educaționale pentru toate disciplinele</p>
+            </div>
+            <div id="lessonsGrid" class="lessons-grid">
+                <!-- Lessons will be loaded here -->
+                <div class="lesson-card empty-lessons">
+                    <div class="empty-icon">📚</div>
+                    <p>Nicio lecție încă. Administratorul poate adăuga lecții!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activitati" class="section">
             <div class="section-header">
                 <h2 class="section-title">Activități Recente</h2>
                 <div class="section-underline"></div>
@@ -337,7 +452,7 @@
             </div>
         </section>
 
-        <section id="galerie" class="section">
+        <section id="galerie" class="section section-alt">
             <div class="section-header">
                 <h2 class="section-title">Galerie Foto</h2>
                 <div class="section-underline"></div>
@@ -379,6 +494,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="tutor.js"></script>
 </body>
 
 </html>
