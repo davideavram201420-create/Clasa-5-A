@@ -1,7 +1,7 @@
 // AI Tutor & Lessons JavaScript - Add to end of script.js
 
 // Google Gemini API Key (you'll need to get your own from https://makersuite.google.com/app/apikey)
-const GEMINI_API_KEY = 'AIzaSyC1234567890abcdefghijklmnop'; // Replace with your actual API key
+const GEMINI_API_KEY = 'AIzaSyCBzvM_NkXU4yzoJddchjtRD6U5zzf_qpU'; // Replace with your actual API key
 
 // Tutor Modal Elements
 const openTutorBtn = document.getElementById('openTutorBtn');
@@ -355,4 +355,5 @@ function deleteLesson(lessonId) {
 if (lessonsGrid) {
     loadLessons();
 }
+
 
