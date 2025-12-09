@@ -1,0 +1,7 @@
+# Don't commit sensitive files!
+uselessfile.txt
+node_modules/
+.env
+.env.local
+*.log
+.vercel
