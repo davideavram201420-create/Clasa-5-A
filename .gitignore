@@ -1,0 +1,6 @@
+# Don't commit these files
+node_modules/
+.env
+.env.local
+*.log
+.vercel
