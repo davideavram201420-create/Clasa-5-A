@@ -1,3 +1,1 @@
-# Add your Groq API key here (one line only)
-# Get your FREE key at: https://console.groq.com/keys
-gsk_your_groq_api_key_here
+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
